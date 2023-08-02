@@ -22,11 +22,11 @@ export const config = {
     // will be called from there.
     //
     specs: [
-        //'./test/specs/**/*.js'
-        './test/specs/com.tms.testScripts/UserBooking.js',
-        './test/specs/com.tms.testScripts/UserCancelTicket.js',
-        './test/specs/com.tms.testScripts/UserCountInAdminDashboard.js',
-        './test/specs/com.tms.testScripts/UserIssue.js'
+        './test/specs/**/*.js'
+        // './test/specs/com.tms.testScripts/UserBooking.js',
+        // './test/specs/com.tms.testScripts/UserCancelTicket.js',
+        // './test/specs/com.tms.testScripts/UserCountInAdminDashboard.js',
+        // './test/specs/com.tms.testScripts/UserIssue.js'
     ],
     // Patterns to exclude.
     exclude: [

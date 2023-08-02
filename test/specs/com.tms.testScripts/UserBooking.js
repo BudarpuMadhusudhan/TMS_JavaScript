@@ -95,7 +95,7 @@ describe("User Booking",async()=>{
     await browser.$('#password').setValue("Test@123")
     await browser.$('[name="signin"]').click()
 
-       /* user storing his booking id*/  
+       /* user seeing this boiking status*/  
     await browser.$("//a[text()='My Tour History']").click()
     var userBookingMsg=await browser.$('(//tbody/tr)[last()]/td[7]').getText()
     console.log(userBookingMsg);

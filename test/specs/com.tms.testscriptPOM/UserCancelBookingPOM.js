@@ -4,12 +4,10 @@ import AdminDashboardPage from "../../pageobjects/TMS_POM/AdminDashboardPage.js"
 import AdminPackageCreation from "../../pageobjects/TMS_POM/AdminPackageCreation.js";
 import ExcelUtility from "../../Utility/ExcelUtility.js";
 import PackageListPage from "../../pageobjects/TMS_POM/PackageListPage.js";
-import AdminManageBookingPage from "../../pageobjects/TMS_POM/AdminManageBookingPage.js";
 
-
-describe('UserBookingPOM',async ()=>{
-    it('UserBookingPOMTest',async()=>{
-       var URL=await ExcelUtility.getExceldata("TMS",2,2)
+describe("UserCancelBookingPOM",async()=>{
+    it('UserCancelBookingTest',async()=>{
+        var URL=await ExcelUtility.getExceldata("TMS",2,2)
        var ADMINUSERNAME=await ExcelUtility.getExceldata("TMS",3,2)
        var ADMINPASSWORD=await ExcelUtility.getExceldata("TMS",4,2)
        var USERUSERNAME=await ExcelUtility.getExceldata("TMS",5,2)
@@ -65,41 +63,18 @@ describe('UserBookingPOM',async ()=>{
     /*verify booking by user*/ 
     await PackageListPage.verifyUserBookingMsg()
 
-    /*user logout*/
-    await TMSHomepage.userlogoutButton.scrollIntoView()
-    await TMSHomepage.userlogoutButton.click()
+     /*User Cancel his ticket*/
+    await TMSHomepage.myTourHistory.click()
+    await TMSHomepage.cancelbookingLink.scrollIntoView()
+    await TMSHomepage.cancelbookingLink.isClickable()
+    await TMSHomepage.cancelbookingLink.click()
+    await browser.acceptAlert()
 
-    /*Admin Login*/ 
-    await TMSHomepage.adminLoginButton();
-    await  AdminSignInpage.adminLogin(ADMINUSERNAME,ADMINPASSWORD)
-
-
-   /*Admin confirming user tickets*/
-   await AdminDashboardPage.manageBooking.click()
-   await AdminManageBookingPage.bookingConfirmButton.waitForDisplayed({timeout:2000})
-   await AdminManageBookingPage.bookingConfirmButton.scrollIntoView()
-   await AdminManageBookingPage.bookingConfirmButton.isClickable()
-   await AdminManageBookingPage.bookingConfirmButton.click()
-   await browser.acceptAlert()
-   await AdminManageBookingPage.adminConfirmMSg.getText()
-
-    /* Admin Logout*/
-    await AdminDashboardPage.adminLogout()
-    await AdminSignInpage.returnHome.click()
-     
-    /*User Login*/ 
-    await TMSHomepage.userLogin(USERUSERNAME,USERPASSWORD)
-
-
-    /* user seeing this boiking status*/  
-     await TMSHomepage.myTourHistory.click()
-     var CM=await TMSHomepage.comfirmMsgBlock.getText()
-     console.log(CM);
+    /*verify Booking Cancellation*/
+     await TMSHomepage.verifyCancelBookingMsg()
 
     /*user logout*/
     await TMSHomepage.userlogoutButton.scrollIntoView()
     await TMSHomepage.userlogoutButton.click()
-
-    await browser.pause(5000)
     })
 })

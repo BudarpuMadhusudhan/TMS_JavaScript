@@ -20,11 +20,11 @@ class AdminSignInPage
         return $("//a[text()='Back to home']")
     }
 
-    adminLogin(username,password)
+   async adminLogin(username,password)
     {
-        this.adminusername.setValue(username)
-        this.adminpassword.setValue(password)
-        this.signinButton.click()
+       await this.adminusername.setValue(username)
+       await this.adminpassword.setValue(password)
+       await this.signinButton.click()
     }
 
   
