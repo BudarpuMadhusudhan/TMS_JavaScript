@@ -23,7 +23,7 @@ describe('UserIssuePOM',async()=>{
         
         /*Opening Browser*/ 
          await browser.url(URL)
-         await browser.maximizeWindow() 
+         //await browser.maximizeWindow() 
          
          /*User Login*/ 
          await TMSHomepage.userLogin(USERUSERNAME,USERPASSWORD)

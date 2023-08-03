@@ -26,7 +26,7 @@ describe('UserCancelBooking' ,async ()=>{
 
     /*Verfiying package creation*/
     var expectedCreatedMsg=await browser.$('//div[@class="succWrap"]').getText()
-    await expect(expectedCreatedMsg).("Package Created Successfully")
+    await expect(expectedCreatedMsg)===("Package Created Successfully")
     
   /* Admin Logout*/
     await browser.$('//div[@class="user-name"]').click()
@@ -53,7 +53,7 @@ describe('UserCancelBooking' ,async ()=>{
 
      /*verify booking by user*/ 
      var bookingMsg=await browser.$('//div[@class="succWrap"]').getText()
-     await expect(bookingMsg).toContain("Booked Successfully")
+     await expect(bookingMsg)===("Booked Successfully")
 
    /*User Cancel his ticket*/
      var cancelLink=await browser.$("//a[text()='My Tour History']")

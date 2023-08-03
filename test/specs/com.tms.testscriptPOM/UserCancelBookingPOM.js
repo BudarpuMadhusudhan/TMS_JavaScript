@@ -71,9 +71,12 @@ describe("UserCancelBookingPOM",async()=>{
     await TMSHomepage.cancelbookingLink.scrollIntoView()
     await TMSHomepage.cancelbookingLink.isClickable()
     await TMSHomepage.cancelbookingLink.click()
+    await browser.pause(2000)
     await browser.acceptAlert()
 
     /*verify Booking Cancellation*/
+    await browser.pause(5000)
+    expect(await TMSHomepage.bookingCancelMsg.waitForDisplayed({timeout:5000})).to.be.equals
     var expectedMsg =await TMSHomepage.bookingCancelMsg.getText()
     expect(expectedMsg).to.be.contains("SUCCESS:Booking Cancelled successfully")
 

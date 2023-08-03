@@ -1,0 +1,1 @@
+{"total":2,"items":[{"uid":"04a017f3ef37198aa6f1adb5cd033be5","name":"UserCancelBookingPOM","statistic":{"failed":0,"broken":1,"skipped":0,"passed":0,"unknown":0,"total":1}},{"uid":"99dcd9528c35479a289665f4464f48ae","name":"UserCountInAdminDashBoardPOM","statistic":{"failed":0,"broken":0,"skipped":0,"passed":3,"unknown":0,"total":3}}]}

@@ -19,7 +19,7 @@ describe('UserCountInAdminDashBoardPOM',async()=>{
 
          /*Opening Browser*/ 
          await browser.url(URL)
-         await browser.maximizeWindow()
+         //await browser.maximizeWindow()
 
         /* User First*/ 
          await TMSHomepage.userSignUP.click()

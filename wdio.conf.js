@@ -35,6 +35,12 @@ export const config = {
     exclude: [
         // 'path/to/excluded/files'
     ],
+
+    //suite
+    suites:{
+        smoke:["./test/specs/com.tms.testscriptPOM/UserBookingPOM.js","./test/specs/com.tms.testscriptPOM/UserCancelBookingPOM.js"],
+        regg:["./test/specs/com.tms.testscriptPOM/UserCountInAdminDashBoardPOM.js","./test/specs/com.tms.testscriptPOM/UserIssuePOM.js"]
+    },
     //
     // ============
     // Capabilities
@@ -59,16 +65,16 @@ export const config = {
     //
     capabilities: [{
         browserName: 'chrome',
+        maxInstances: 10
+    },
+    {
+        browserName: 'firefox',
         maxInstances: 1
     },
-    // {
-    //     browserName: 'firefox',
-    //     maxInstances: 1
-    // },
-    // {
-    //     browserName: 'MicrosoftEdge',
-    //     maxInstances: 1
-    // }
+    {
+        browserName: 'MicrosoftEdge',
+        maxInstances: 1
+    }
 ],
 
     //
@@ -118,7 +124,7 @@ export const config = {
     // Services take over a specific job you don't want to take care of. They enhance
     // your test setup with almost no effort. Unlike plugins, they don't add new
     // commands. Instead, they hook themselves up into the test process.
-    services: ['chromedriver'],//chromedriver selenium-standalone
+    services: ['selenium-standalone'],//chromedriver selenium-standalone
 
     // Framework you want to run your specs with.
     // The following are supported: Mocha, Jasmine, and Cucumber
@@ -141,7 +147,12 @@ export const config = {
     // The only one supported by default is 'dot'
     // see also: https://webdriver.io/docs/dot-reporter
     reporters: ['spec'],
-
+    
+    reporters: [['allure', {
+        outputDir: 'allure-results',
+        disableWebdriverStepsReporting: true,
+        disableWebdriverScreenshotsReporting: false,
+    }]],
     
     //
     // Options to be passed to Mocha.
@@ -245,8 +256,12 @@ export const config = {
      * @param {boolean} result.passed    true if test has passed, otherwise false
      * @param {object}  result.retries   informations to spec related retries, e.g. `{ attempts: 0, limit: 0 }`
      */
-    // afterTest: function(test, context, { error, result, duration, passed, retries }) {
-    // },
+    afterTest: async function(test, context, { error, result, duration, passed, retries }) {
+        if(error)
+        {
+            await browser.takeScreenshot()
+        }
+    },
 
 
     /**

@@ -11,9 +11,12 @@
     "wdio-chromedriver-service": "^8.1.1"
   },
   "scripts": {
-    "wdio": "wdio run ./wdio.conf.js"
+    "wdio": "wdio run ./wdio.conf.js",
+    "BookingTestScripts": "npx wdio run ./wdio.conf.js --spec test/specs/com.tms.testscriptPOM/UserCancelBookingPOM.js, --spec test/specs/com.tms.testscriptPOM/UserBookingPOM.js"
   },
   "dependencies": {
+    "@wdio/allure-reporter": "^8.14.0",
+    "allure-commandline": "^2.23.1",
     "chai": "^4.3.7",
     "exceljs": "^4.3.0"
   }

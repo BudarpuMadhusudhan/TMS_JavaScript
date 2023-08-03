@@ -1,0 +1,5 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"passed","Thu Aug 03 13:29:19 IST 2023","Thu Aug 03 13:29:34 IST 2023","14462","","UserCountInAdminDashBoardPOM","","","","UserCountInAdminDashBoardPOMTest",""
+"passed","Thu Aug 03 13:29:13 IST 2023","Thu Aug 03 13:29:39 IST 2023","26107","","UserCountInAdminDashBoardPOM","","","","UserCountInAdminDashBoardPOMTest",""
+"broken","Thu Aug 03 13:18:20 IST 2023","Thu Aug 03 13:18:45 IST 2023","24942","","UserCancelBookingPOM","","","","UserCancelBookingTest",""
+"passed","Thu Aug 03 13:29:13 IST 2023","Thu Aug 03 13:29:43 IST 2023","30532","","UserCountInAdminDashBoardPOM","","","","UserCountInAdminDashBoardPOMTest",""
