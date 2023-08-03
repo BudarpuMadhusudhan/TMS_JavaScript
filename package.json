@@ -12,7 +12,7 @@
   },
   "scripts": {
     "wdio": "wdio run ./wdio.conf.js",
-    "BookingTestScripts": "npx wdio run ./wdio.conf.js --spec test/specs/com.tms.testscriptPOM/UserCancelBookingPOM.js, --spec test/specs/com.tms.testscriptPOM/UserBookingPOM.js"
+    "BookingTestScripts": "npx wdio run ./wdio.conf.js --spec test/specs/HandlingCalender.js"
   },
   "dependencies": {
     "@wdio/allure-reporter": "^8.14.0",
