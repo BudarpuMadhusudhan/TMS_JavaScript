@@ -5,7 +5,7 @@ import AdminPackageCreation from "../../pageobjects/TMS_POM/AdminPackageCreation
 import ExcelUtility from "../../Utility/ExcelUtility.js";
 import PackageListPage from "../../pageobjects/TMS_POM/PackageListPage.js";
 import AdminManageBookingPage from "../../pageobjects/TMS_POM/AdminManageBookingPage.js";
-
+import { expect } from "chai";
 
 describe('UserBookingPOM',async ()=>{
     it('UserBookingPOMTest',async()=>{
@@ -41,8 +41,9 @@ describe('UserBookingPOM',async ()=>{
       await AdminPackageCreation.createButton.click()
 
    /* verify admin package creation*/ 
-      await AdminPackageCreation.packageCreatedMsg.waitForDisplayed({timeout:2000})
-      await  AdminPackageCreation.verifyPackageCreation() 
+      expect(AdminPackageCreation.packageCreatedMsg.waitForDisplayed({timeout:2000})).to.be.equals
+      var Expectedmsg=await  AdminPackageCreation.packageCreatedMsg.getText()
+      expect(Expectedmsg).to.be.contains("Package Created Successfully")
 
     /* Admin Logout*/
      await AdminDashboardPage.adminLogout()
@@ -51,7 +52,6 @@ describe('UserBookingPOM',async ()=>{
     /*User Login*/ 
     await TMSHomepage.userLogin(USERUSERNAME,USERPASSWORD)
     
-
     /*User Booking his ticket */
     await PackageListPage.DetailsButton.scrollIntoView()
     await PackageListPage.DetailsButton.isClickable()
@@ -63,7 +63,8 @@ describe('UserBookingPOM',async ()=>{
     await PackageListPage.bookButton.click()
 
     /*verify booking by user*/ 
-    await PackageListPage.verifyUserBookingMsg()
+    var bookingMsg=await PackageListPage.userBookingMsg.getText()
+    expect(bookingMsg).to.be.contains("Booked Successfully")
 
     /*user logout*/
     await TMSHomepage.userlogoutButton.scrollIntoView()

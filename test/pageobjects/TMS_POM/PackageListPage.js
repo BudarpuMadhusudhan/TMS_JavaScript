@@ -26,14 +26,25 @@ class PackageListPage
   }
 
   get userBookingMsg()
-{
-  return $('//div[@class="succWrap"]')
-}
-async verifyUserBookingMsg()
-{
-  var bookingMsg=await this.userBookingMsg.getText()
-  await expect(bookingMsg).toContain("Booked Successfully")
-} 
+   {
+     return $('//div[@class="succWrap"]')
+   }
+
+   get SelectIssue()
+   {
+    return $('//select[@name="issue"]')
+   }
+
+   get IssueDescription()
+   {
+    return $('[name="description"]')
+   }
+
+   get submitButton()
+   {
+    return $("//button[text()='Submit']")
+   }
+
 
 }
 

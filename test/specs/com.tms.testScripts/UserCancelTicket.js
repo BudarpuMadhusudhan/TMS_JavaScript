@@ -26,7 +26,7 @@ describe('UserCancelBooking' ,async ()=>{
 
     /*Verfiying package creation*/
     var expectedCreatedMsg=await browser.$('//div[@class="succWrap"]').getText()
-    await expect(expectedCreatedMsg).toContain("Package Created Successfully")
+    await expect(expectedCreatedMsg).("Package Created Successfully")
     
   /* Admin Logout*/
     await browser.$('//div[@class="user-name"]').click()

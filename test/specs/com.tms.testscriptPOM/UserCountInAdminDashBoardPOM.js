@@ -60,7 +60,7 @@ describe('UserCountInAdminDashBoardPOM',async()=>{
          /*Verify user count is increased in admin dashboard*/
         if(count2>count1)
          {
-           console.log("****************************************User COUNT is increased in Admin Dashboard now the count is "+count2);
+           console.log("***************User COUNT is increased in Admin Dashboard now the count is************ "+count2);
          }
     })
 })

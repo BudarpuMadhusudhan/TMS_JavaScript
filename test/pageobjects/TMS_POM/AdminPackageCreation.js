@@ -54,12 +54,6 @@ class AdminPackageCreation
      await this.packageFeature.setValue(packagefeature)
      await this.packageDetails.setValue(packagedetails)
    }
-
-   async verifyPackageCreation()
-   {
-    var expectedCreatedMsg = this.packageCreatedMsg.getText()
-    await expect(expectedCreatedMsg)===("Package Created Successfully")
-   }
    
 
 }

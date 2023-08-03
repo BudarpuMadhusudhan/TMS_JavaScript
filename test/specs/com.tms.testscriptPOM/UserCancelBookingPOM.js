@@ -4,6 +4,7 @@ import AdminDashboardPage from "../../pageobjects/TMS_POM/AdminDashboardPage.js"
 import AdminPackageCreation from "../../pageobjects/TMS_POM/AdminPackageCreation.js";
 import ExcelUtility from "../../Utility/ExcelUtility.js";
 import PackageListPage from "../../pageobjects/TMS_POM/PackageListPage.js";
+import { expect } from "chai";
 
 describe("UserCancelBookingPOM",async()=>{
     it('UserCancelBookingTest',async()=>{
@@ -23,45 +24,47 @@ describe("UserCancelBookingPOM",async()=>{
        var TODATE=await ExcelUtility.getExceldata("TMS",12,2)
        var COMMENT=await ExcelUtility.getExceldata("TMS",12,3)
        /*Opening Browser*/ 
-        await browser.url(URL)
-        await browser.maximizeWindow()
-    
-      /*Admin Login*/ 
-       await TMSHomepage.adminLoginButton();
-       await  AdminSignInpage.adminLogin(ADMINUSERNAME,ADMINPASSWORD)
-       
-       /*Admin Create's package */
-      await AdminDashboardPage.tourpackagetab.moveTo()
-      await AdminDashboardPage.createpackagetab.click()
-      await AdminPackageCreation.createPackage(PACKAGENAME,PACKAGETYPE,PACKAGELOC,PACKAGEPRICE,PACKAGEFEATURE,PACKAGEDETAILS)
-      await AdminPackageCreation.createButton.scrollIntoView()
-      await AdminPackageCreation.packageImage.setValue(PACKAGEIMAGEPATH)
-      await AdminPackageCreation.createButton.click()
-
-   /* verify admin package creation*/ 
-      await AdminPackageCreation.packageCreatedMsg.waitForDisplayed({timeout:2000})
-      await  AdminPackageCreation.verifyPackageCreation() 
-
-    /* Admin Logout*/
-     await AdminDashboardPage.adminLogout()
-     await AdminSignInpage.returnHome.click()
+       await browser.url(URL)
+       await browser.maximizeWindow()
    
-    /*User Login*/ 
-    await TMSHomepage.userLogin(USERUSERNAME,USERPASSWORD)
-    
+     /*Admin Login*/ 
+      await TMSHomepage.adminLoginButton();
+      await  AdminSignInpage.adminLogin(ADMINUSERNAME,ADMINPASSWORD)
+      
+      /*Admin Create's package */
+     await AdminDashboardPage.tourpackagetab.moveTo()
+     await AdminDashboardPage.createpackagetab.click()
+     await AdminPackageCreation.createPackage(PACKAGENAME,PACKAGETYPE,PACKAGELOC,PACKAGEPRICE,PACKAGEFEATURE,PACKAGEDETAILS)
+     await AdminPackageCreation.createButton.scrollIntoView()
+     await AdminPackageCreation.packageImage.setValue(PACKAGEIMAGEPATH)
+     await AdminPackageCreation.createButton.click()
 
-    /*User Booking his ticket */
-    await PackageListPage.DetailsButton.scrollIntoView()
-    await PackageListPage.DetailsButton.isClickable()
-    await PackageListPage.DetailsButton.click()
-    await PackageListPage.fromDate.setValue(FROMDATE)
-    await PackageListPage.toDate.setValue(TODATE)
-    await PackageListPage.bookButton.scrollIntoView()
-    await PackageListPage.comment.setValue(COMMENT)
-    await PackageListPage.bookButton.click()
+  /* verify admin package creation*/ 
+     expect(AdminPackageCreation.packageCreatedMsg.waitForDisplayed({timeout:2000})).to.be.equals
+     var Expectedmsg=await  AdminPackageCreation.packageCreatedMsg.getText()
+     expect(Expectedmsg).to.be.contains("Package Created Successfully")
 
-    /*verify booking by user*/ 
-    await PackageListPage.verifyUserBookingMsg()
+   /* Admin Logout*/
+    await AdminDashboardPage.adminLogout()
+    await AdminSignInpage.returnHome.click()
+  
+   /*User Login*/ 
+   await TMSHomepage.userLogin(USERUSERNAME,USERPASSWORD)
+   
+   /*User Booking his ticket */
+   await PackageListPage.DetailsButton.scrollIntoView()
+   await PackageListPage.DetailsButton.isClickable()
+   await PackageListPage.DetailsButton.click()
+   await PackageListPage.fromDate.setValue(FROMDATE)
+   await PackageListPage.toDate.setValue(TODATE)
+   await PackageListPage.bookButton.scrollIntoView()
+   await PackageListPage.comment.setValue(COMMENT)
+   await PackageListPage.bookButton.click()
+
+   /*verify booking by user*/ 
+   var bookingMsg=await PackageListPage.userBookingMsg.getText()
+   expect(bookingMsg).to.be.contains("Booked Successfully")
+
 
      /*User Cancel his ticket*/
     await TMSHomepage.myTourHistory.click()
@@ -71,7 +74,8 @@ describe("UserCancelBookingPOM",async()=>{
     await browser.acceptAlert()
 
     /*verify Booking Cancellation*/
-     await TMSHomepage.verifyCancelBookingMsg()
+    var expectedMsg =await TMSHomepage.bookingCancelMsg.getText()
+    expect(expectedMsg).to.be.contains("SUCCESS:Booking Cancelled successfully")
 
     /*user logout*/
     await TMSHomepage.userlogoutButton.scrollIntoView()

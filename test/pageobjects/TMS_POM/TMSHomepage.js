@@ -54,6 +54,20 @@ class TMSHomepage
         return $("//a[text()='Sign Up']")
     }
 
+    get writeIssue()
+    {
+        return $("//a[text()=' / Write Us ']")
+    }
+
+    get issueTicket()
+    {
+        return $("//a[text()='Issue Tickets']")
+    }
+
+    get remarkMsgView()
+    {
+        return $("(//tbody/tr)[last()]/td[5]")
+    }
     async adminLoginButton()
     {
         await this.adminLoginButtonelementt.click()
@@ -67,13 +81,7 @@ class TMSHomepage
     await this.userPassword.setValue(password)
     await this.userSignIn.click()
     }
-    
-    async verifyCancelBookingMsg()
-    {
-       await this.bookingCancelMsg.waitForDisplayed({timeout:10000})
-       var expectedMsg =await this.bookingCancelMsg.getText()
-       expect(expectedMsg)===("SUCCESS:Booking Cancelled successfully")
-    }
+
 
 }
 

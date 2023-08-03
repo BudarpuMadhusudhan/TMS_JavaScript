@@ -29,6 +29,10 @@ class AdminDashoardpage
     return $("//h3[text()='User']/./..//h4")
   }
 
+  get manageIssue()
+  {
+    return $("//span[text()='Manage Issues']")
+  }
   async adminLogout()
   {
     await this.welcomeButon.click()
