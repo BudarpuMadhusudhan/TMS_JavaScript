@@ -18,6 +18,7 @@ describe('UserCountInAdminDashBoardPOM',async()=>{
         var PASSWORD=await ExcelUtility.getExceldata("TMS",15,4)
 
          /*Opening Browser*/ 
+         //await browser.url("Online_Tourism_Management_System/")
          await browser.url(URL)
          //await browser.maximizeWindow()
 
